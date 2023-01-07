@@ -1,6 +1,6 @@
 //stack using array  static,dynamic  , using templates
 //stack using LL 
-
+//inbuilt stack
 
 
 //................................................................
