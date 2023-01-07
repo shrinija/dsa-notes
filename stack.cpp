@@ -1,4 +1,4 @@
-//stack using array  static,dynamic
+//stack using array  static,dynamic  , using templates
 //stack using LL 
 
 
@@ -75,7 +75,7 @@ int main()
 
 //...........................................................
 
-//-->dynamic stack
+//-->using array dynamic stack
 
 #include<iostream>
 #include<climits>
@@ -171,7 +171,7 @@ cout<<endl;
 }
 
 //......................................................................
-//-->using templates
+//-->using array using templates
 
 //stack using array
 //stack using array dynamic
@@ -271,4 +271,127 @@ cout<<endl;
 
     cout<<s.is_empty()<<endl;
 }
-//................................................
+//.......................................................................................................................................
+
+//->stack using LL  and templates
+
+#include<iostream>
+using namespace std;
+
+template <typename T>
+
+class Node{
+public:
+T data;
+Node* next;
+
+Node(T data)
+{
+    this->data=data;
+    next=NULL;
+}
+};
+
+template <typename T>
+
+class stack_using_LL{
+   
+   Node<T>*head;
+   int size;
+
+public:
+
+stack_using_LL()                              //this constructor has to be public.......once learn this proplerly......
+{
+    head=NULL;
+    size=0;
+}
+
+   void push(T data)
+   {
+    Node<T>* newnode=new Node<T>(data);
+    
+     newnode->next=head;
+     head=newnode;
+     size++;
+   }
+
+   void pop()
+   {
+    if(head==NULL)
+    {
+        cout<<"stack is empty";
+    }
+    else{
+    Node<T>*temp=head;
+    head=head->next;
+    delete temp;
+    size--;
+    }
+   }
+
+   T top()
+   {
+    return head->data;
+   }
+
+   bool is_empty()
+   {
+    return head==NULL;
+   }
+
+   int stacksize()
+   {
+      return size;
+   }
+ };
+
+ int main()
+ {
+    stack_using_LL<int> s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+
+    s.pop();
+
+    cout<<s.top()<<endl;
+
+    cout<<s.is_empty()<<endl;
+
+    cout<<s.stacksize();
+
+ }
+//.......................................................................................................................
+
+//-->inbuilt stack
+
+#include<iostream>
+using namespace std;
+#include<stack>
+int main()
+{
+    stack<int> s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.pop();
+
+    cout<<s.top()<<endl;
+
+    cout<<s.empty()<<endl;
+
+    cout<<s.size();
+
+    s.pop();
+    s.pop();
+    s.pop();
+
+    cout<<s.top()<<endl;
+
+    cout<<s.empty()<<endl;
+
+}
+//............................................................
