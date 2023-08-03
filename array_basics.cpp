@@ -123,3 +123,57 @@ cout<<endl;
 // array ke case me.... we are giving address...
 
 // so changes made after passing array to function are actually made in original array only...........
+
+
+//..........................................................................................
+
+// passing array to function
+
+#include<iostream>
+using namespace std;
+
+void test1(int* arr) {
+    arr[0] = 1;
+}
+
+void test2(int arr[]) {
+    arr[1] = 2;
+}
+
+void test3(int *&arr) {
+    arr[2] = 3;
+}
+
+int main()
+ {
+    int *arr = new int[3]();
+    arr[0] = 0;
+    arr[1] = 0;
+    arr[2] = 0;
+
+    test1(arr);
+    test2(arr);
+    test3(arr);
+
+    cout << arr[0] << endl;
+    cout << arr[1] << endl;
+    cout << arr[2] << endl;
+
+		//........................................
+
+		int myarr[]={0};
+    myarr[0] = 0;
+    myarr[1] = 0;
+    myarr[2] = 0;
+
+    test1(myarr);
+    test2(myarr);
+   // test3(myarr); //error
+
+    cout << myarr[0] << endl;
+    cout << myarr[1] << endl;
+    cout << myarr[2] << endl;
+
+}
+
+//.......................................................................................
