@@ -37,7 +37,28 @@ static data member
 
 
 
+--> Encapsulation ( wrapping up data members and functions ) ( Information hiding / Data Hiding )
+-data hiding , increase security
+-if we want we can make class read only , only creat class using getter...
+-code reusability
+-unit testing
 
+-->Inheritance
+-process of inheriting properties and behaviour of an existing class into new class
+sub class
+super class
+C++ supports 5 types of inheritance
+1)single
+2)multilevel
+3)multiple
+4)hierarchical
+5)hybrid
+-inheritance ambiguity 
+-Avoid ambiguity using scope resolution operator
+
+{ coding ninja ke mcq bagun ghe }
+
+-->
 
 //..........................................................................................................................
 #include<iostream>
