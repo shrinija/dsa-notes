@@ -1,0 +1,222 @@
+https://www.w3schools.com/whatis/whatis_htmldom.asp
+https://www.w3schools.com/whatis/whatis_js.asp   (best quick javascript revision)
+https://www.w3schools.com/js/js_es6.asp      (ES6)
+
+//.....................................................................................................................................
+
+What is HTTP?
+
+HTTP stands for Hyper Text Transfer Protocol
+
+WWW is about communication between web clients and servers
+
+Communication between client computers and web servers is done by sending HTTP Requests and receiving HTTP Responses
+
+World Wide Web Communication
+The World Wide Web is about communication between web clients and web servers.
+
+Clients are often browsers (Chrome, Edge, Safari), but they can be any type of program or device.
+
+Servers are most often computers in the cloud.
+
+//..................................................
+
+What is HTML?
+
+HTML stands for Hyper Text Markup Language
+
+HTML is the standard markup language for Web pages
+
+HTML elements are the building blocks of HTML pages
+
+HTML elements are represented by <> tags
+
+//..............................................
+
+What is CSS?
+
+CSS stands for Cascading Style Sheets
+
+CSS describes how HTML elements are to be displayed
+
+//.................................................
+
+What is JavaScript?
+
+JavaScript is the Programming Language for the Web.
+
+JavaScript can update and change both HTML and CSS.
+
+JavaScript can calculate, manipulate and validate data.
+
+//........................................................
+
+New Features in ES6
+
+The let keyword
+The const keyword
+Arrow Functions
+The ... Operator
+For/of
+Map Objects
+Set Objects
+Classes
+Promises
+Symbol
+Default Parameters
+Function Rest Parameter
+String.includes()
+String.startsWith()
+String.endsWith()
+Array.from()
+Array keys()
+Array find()
+Array findIndex()
+New Math Methods
+New Number Properties
+New Number Methods
+New Global Methods
+Object entries
+JavaScript Modules
+
+
+//........................................................
+
+What is the HTML DOM?
+
+The HTML DOM is an Object Model for HTML. It defines:
+
+HTML elements as objects
+Properties for all HTML elements
+Methods for all HTML elements
+Events for all HTML elements
+
+
+The HTML DOM is an API (Programming Interface) for JavaScript:
+
+JavaScript can add/change/remove HTML elements
+JavaScript can add/change/remove HTML attributes
+JavaScript can add/change/remove CSS styles
+JavaScript can react to HTML events
+JavaScript can add/change/remove HTML events
+
+
+The HTML DOM (Document Object Model)
+When a web page is loaded, the browser creates a Document Object Model of the page.
+The HTML DOM model is constructed as a tree of Objects.
+
+//................................................................
+
+What is JSON?
+
+JSON stands for JavaScript Object Notation
+
+JSON is a lightweight format for storing and transporting data
+
+JSON is often used when data is sent from a server to a web page
+
+JSON is "self-describing" and easy to understand
+
+{   https://www.w3schools.com/whatis/whatis_json.asp  }
+
+//...................................................................
+
+What is Command Line Interface (CLI)?
+
+CLI is a command line program that accepts text input to execute operating system functions.
+Today, with graphical user interfaces (GUI), most users never use command-line interfaces (CLI).
+However, CLI is still used by software developers and system administrators to configure computers, install software, and access features that are not available in the graphical interface.
+
+//...................................................................
+
+What is npm?
+
+npm is the world's largest Software Library (Registry)
+
+npm is also a software Package Manager and Installer
+
+contains over 800,000 code packages.
+
+Installing npm
+npm is installed with Node.js
+
+This means that you have to install Node.js to get npm installed on your computer.
+Software Package Manager
+The name npm (Node Package Manager) stems from when npm first was created as a package manager for Node.js.
+
+All npm packages are defined in files called package.json.
+
+The content of package.json must be written in JSON.
+
+At least two fields must be present in the definition file: name and version.
+Managing Dependencies
+npm can manage dependencies.
+
+npm can (in one command line) install all the dependencies of a project.
+
+Dependencies are also defined in package.json.
+
+//...............................................................
+
+What is React?
+What is Babel?
+What is JSX?
+React DOM Render
+JSX Expressions
+{  https://www.w3schools.com/whatis/whatis_react.asp  }
+
+//.....................................................................
+
+What is Node.js ?
+
+Node.js is an open source server environment.
+
+Node.js allows you to run JavaScript on the server.
+
+Why Node.js?
+Node.js uses asynchronous programming!
+
+What is a Module in Node.js?
+Consider modules to be the same as JavaScript libraries.
+A set of functions you want to include in your application.
+
+Include Modules
+To include a module, use the require() function with the name of the module:
+
+Built-in Modules
+Create Your Own Modules
+Include Your Own Module
+
+What is NPM?
+NPM is a package manager for Node.js packages, or modules if you like.
+What is a Package?
+A package in Node.js contains all the files you need for a module.
+Modules are JavaScript libraries you can include in your project.
+
+
+{  https://www.w3schools.com/nodejs/nodejs_intro.asp }
+
+//................................................................................
+
+What is SQL?
+
+SQL stands for Structured Query Language
+
+SQL is a standard language for accessing databases
+
+The Most Important SQL Statements:
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+SQL keywords are NOT case sensitive: select is the same as SELECT
+
+//....................................................................................................
