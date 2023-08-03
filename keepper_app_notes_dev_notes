@@ -220,3 +220,24 @@ DROP INDEX - deletes an index
 SQL keywords are NOT case sensitive: select is the same as SELECT
 
 //....................................................................................................
+
+//react   { https://www.peerbits.com/blog/reasons-to-choose-reactjs-for-your-web-development-project.html }
+-> separations of concerns
+->focus on one component at a time
+
+
+//.......................................................................
+expression vs statement  
+->statements perform some sort of action , ex- loops ,if else, switch statements
+->expression just resolves to a single value
+//.............
+Ternary Operator 
+condition ? do if true : do if false
+//.......................
+using && , || 
+//.....................
+Declarative Programming
+Imperative Programming
+
+
+
