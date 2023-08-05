@@ -60,6 +60,7 @@ int main()
 // avg- O(n^2)
 // worst- O(n^2)
 // s.c - O(1)
+//stable
 
 #include <iostream>
 using namespace std;
@@ -106,6 +107,7 @@ int main()
 // avg- O(n^2)
 // worst- O(n^2)
 // s.c - O(1)
+//stable
 
 #include <iostream>
 using namespace std;
@@ -150,11 +152,17 @@ int main()
 //.......................................................................................
 
 // merge Sort
+// divide and conquer algo , recursive
 //  Reason: At each step, we divide the whole array, for that logn and we assume n steps are taken to get sorted array, so overall time complexity will be nlogn
 // best- O(nlog(n))
 // avg- O(nlog(n))
 // worst- O(nlog(n))
 // s.c - O(n)
+//takes extra space (not in place sorting ) , extra space in case of array , not linked list
+// takes extra stack space log(n)  , so total  O(n+log(n)) space
+//stable
+//good for large problems , n>=15 , or else use insertion sort as it it also stable , otherwise merge sort takes extra time in recursion in case of small problems
+//
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -238,9 +246,12 @@ int main()
 //....................................................................................................
 
 // Quick Sort
+// idea: all the elements at it's left should be smaller than that element and all the elements at ita right should be greater than that element
+//1. pick up a pivote and place it in correct place
+//2. smaller on the left larger on the right
+//divide and conquer strategy
 
-// Time Complexity: O(N*logN), where N = size of the array.
-
+// Time Complexity: O(N*logN)
 // Reason: At each step, we divide the whole array, for that logN and n steps are taken for the partition() function, so overall time complexity will be N*logN.
 
 // The following recurrence relation can be written for Quick sort :
@@ -263,7 +274,6 @@ int main()
 // F(n) = 2F(n/2)
 
 // Time Complexity for the best and average case: O(N*logN)
-
 // Space Complexity: O(1) + O(N) auxiliary stack space.
 
 #include <bits/stdc++.h>
