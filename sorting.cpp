@@ -167,7 +167,7 @@ int main()
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int> &arr, int low, int mid, int high)
+void merge(vector<int> &arr, int low, int mid, int high)    // ***see this.... &arr ,and normal arr..dryrun and you we know why &arr
 {
     vector<int> temp;    // temporary array
     int left = low;      // starting index of left half of arr
@@ -207,7 +207,7 @@ void merge(vector<int> &arr, int low, int mid, int high)
     // transfering all elements from temporary to arr //
     for (int i = low; i <= high; i++)
     {
-        arr[i] = temp[i - low]; // see this ....................
+        arr[i] = temp[i - low]; // ***see this ...........
     }
 }
 
