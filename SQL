@@ -1,0 +1,358 @@
+#write all keywords in capital
+
+#paser will parse our commands , tell us if any error
+
+******************************************************************************
+
+CREATE DATABASE imdb;
+
+USE imdb;
+
+SOURCE {location of imdb.sql}
+
+*******************************************************************************
+
+sudo systemctl start mysqld
+
+mariadb -u root -p
+#now this will ask for password
+
+********************************************************************************
+
+SHOW DATABASES;
+
+USE imdb;
+
+SHOW TABLES;
+
+DESCRIBE actors;
+
+**********************************************************************************
+
+SELECT * FROM movies;
+#select all the columns from the movies table
+
+SELECT name,year FROM movies;
+#result set- set of rows with column name name, year from the movies table
+
+->query only how much data you want , as amount of data that to be tranfered will be less when selected less colomns ,so it is going to be faster
+
+SELECT rankscore,name FROM movies limit 10;
+#order table will have order of columns as mentioned in our query
+#but the row order will be preserved , atleast in these types of simple queries
+
+******************************************************************************************************************************************************************
+
+LIMIT :
+
+SELECT name,rankscore FROM movies LIMIT 20;
+#will give first 20 rows
+
+SELECT name,rankscore FROM movies LIMIT 20 OFFSET 40;
+#will give first 20 score from  41th row ,means ignore first 40 and give next 20
+
+*************************************************************************************************************************************************************8
+
+ORDER BY :
+
+SELECT name FROM movies ORDER BY year DESC;
+#list recent movies first
+
+SELECT name FROM movies ORDER BY year;
+#default : ascending
+
+SELECT name,rankscore,year FROM movies ORDER BY year DESC LIMIT 20 OFFSET 40;
+
+->the output row order maynot be same as the one in the table due to query optimizer and internal data-structure/indices.
+
+************************************************************************************************************************************************************************
+
+DISTINCT :
+
+SELECT DISTINCT genre FROM movies_genres;
+#list all genres of movies exist in our database
+#think like , who the they show fabric type available on myntra
+
+SELECT DISTINCT first_name,last_name FROM directors ORDER BY first_name;
+# multiple column DISTINCT , same entry can be there in one column but the whole row will not be present in resulting table
+
+
+************************************************************************************************************************************************
+
+WHERE :
+
+SELECT name FROM movies WHERE rankscore>9;
+
+SELECT name,rankscore FROM movies WHERE rankscore>9 ORDER BY rankscore DESC LIMIT 20;
+
+
+
+#comparison Operators: =, <> or !=, <, <=, >, >=
+
+SELECT * FROM movies_genres WHERE genre !='Horror' ;
+
+SELECT * FROM movies_genres WHERE genre ='Horror' ;
+
+
+NULL => doesnot-exist /unknown /missing
+
+-> "=" doesnot work with NULL , will give you empty result-set
+
+SELECT * FROM movies WHERE rankscore IS NULL ;
+
+SELECT * FROM movies WHERE rankscore IS NOT NULL ;
+
+*****************
+
+# LOGICAL OPERATORS: AND , OR , NOT , ALL , ANY , BETWEEN , EXISTS , IN , LIKE , SOME
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9.7 AND year>2000 ;
+
+SELECT name,year,rankscore FROM movies WHERE NOT rankscore<9.5 ;
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 OR year>2005;
+
+-> will study ANY and ALL when study subqueries
+
+SELECT name,year,rankscore FROM movies WHERE  year BETWEEN 2004 AND 2005;
+
+SELECT name,year,rankscore FROM movies WHERE  year BETWEEN 2005 AND 2004;
+#this will give empty result set ( first give smaller then larger )
+
+SELECT director_id, genre FROM directors_genres WHERE genre IN ('comedy','Horror');
+#same as director_id='comedy' OR director_id='horror'
+
+SELECT name,year,rankscore FROM movies WHERE name LIKE 'Tisch%';
+# wildcard character to imply 0 or more character
+
+SELECT name FROM movies WHERE name LIKE '%es';
+
+SELECT name FROM movies WHERE name LIKE 'esc%es';
+
+SELECT name FROM movies WHERE name LIKE 'Agn_s';
+
+->if we want to match % or _ , we should use the backslash as the escape character :  \% and \_
+
+->  \ is escape character
+
+*************************************************************************************************************************
+
+aggregate functions: computes a single value on a set of rows and returns the aggregate
+
+COUNT , MIN , MAX , SUM , AVG
+
+SELECT MIN(year) FROM movies;
+
+SELECT MAX(year) FROM movies;
+
+SELECT COUNT(*) FROM movies;
+#number of rows
+
+SELECT COUNT(year) FROM movies;
+# no of rows of year equal to number of rows , same as above
+
+SELECT COUNT(year) FROM movies WHERE year>2000;
+
+
+*************************************************************************************************************************
+
+
+GROUP-BY  :
+
+#groups the rows as per some column we choose
+
+SELECT year, COUNT(year) FROM movies  GROUP BY year;
+# find the number of movies released per year
+
+SELECT year, COUNT(year) FROM movies  GROUP BY year ORDER BY year;
+
+SELECT year, COUNT(year) AS cnt FROM movies  GROUP BY year ORDER BY cnt;
+SELECT year, COUNT(year) cnt FROM movies  GROUP BY year ORDER BY cnt;
+
+-> if we are grouping columns contain NULL values , all null values are grouped together
+
+*****************************************************************************************************************************************
+
+HAVING :
+
+# print years which have >2000 movies in our DB [Data scients for analysis]
+
+SELECT year, COUNT(year) AS cnt FROM movies GROUP BY year HAVING cnt>2000;
+
+Order of execution :
+1.GROUP BY to create groups
+2.apply the aggregate functions
+3.Apply HAVING condition
+
+->often used with GROUP BY , not mandatory
+
+SELECT year,name FROM movies HAVING year>2000;
+#HAVING without GROUP BY is same as WHERE
+
+SELECT year, COUNT(year) as cnt FROM movies WHERE rankscore>9 GROUP BY year HAVING cnt>20;
+
+# HAVING vs WHERE
+# WHERE is applied on individual rows while HAVING is applied on groups
+# HAVING is applied after grouping while WHERE is used before grouping
+
+SELECT year, COUNT(year) as cnt FROM movies WHERE rankscore>9 GROUP BY year HAVING cnt>20 LIMIT 5;
+
+*******************************************************************************************************************************************
+
+JOINS :
+
+#combine data in multiple table
+
+#for each movie , print name and genres
+
+SELECT m.name , g.genre from movies m JOIN movies_genres g ON m.id=g.movie_id ;
+
+# table aliases : m and g
+
+#natural join : a join where we have the same column-names across two tabels.
+# T1:c1,c2
+# T2:c1,c2,c3
+
+SELECT * FROM T1 JOIN T2;
+
+SELECT * FROM T1 JOIN T2 USING (c1);
+
+#both will return c1,c2,c3,c4
+#no need to use the keyword "ON"
+
+
+#Inner join (default) vs left outer vs right outer vs full-outer join
+
+T1: c1, c2 , c3
+
+SELECT m.name , g.genre from movies m LEFT JOIN movies_genres g ON m.id=g.movie_id LIMIT 20;
+
+#LEFT JOIN or LEFT OUTER JOIN
+#RIGHT JOIN or RIGHT OUTER JOIN
+#FULL JOIN or FULL OUTER JOIN
+#JOIN or INNER JOIN
+
+# NULL for missing counterpart rows
+
+# 3-way joins and k-way joins
+
+SELECT a.first_name , a.last_name FROM actors a JOIN roles r ON a.id=r.actor_id JOIN movies m on m.id=r.movie_id AND m.name='officer 444';
+
+#practical note about joins : joins can be expensive computationally when we have large tables
+
+examples->
+-> select m.name, d.first_name,d.last_name from movies m JOIN directors d WHERE m.name='tave pe nachati hui chudel' AND d.first_name='janvhi';
+->  select m.name as movie_name, d.first_name as director_first_name,d.last_name, g.genre from movies m JOIN directors d JOIN movies_genres g ON m.id=g.movie_id WHERE m.name='tave pe nachati hui chudel' AND d.first_name='janvhi';
+
+**********************************************************************************************************************************************************************************
+
+
+
+Sub-Queries or Nested Queries or Inner Queries
+
+
+
+
+
+
+
+
+
+*************************************************************************************************************************************************************************
+
+
+DML :
+
+Data manipulation language : SELECT , INSERT , UPDATE , DELETE
+
+INSERT INTO movies (id, name , year , rankscore ) values (412321, 'tave pe nachati hui chudel', 2022, 10);
+
+INSERT INTO movies (id, name , year , rankscore ) values (412322, 'catboy', 2022, 8),(41232, 'gadhavacha lagna', 2021, 7);
+#inserting multiple values
+
+
+example->
+->INSERT INTO phone_book2 SELECT * FROM phone_book WHERE name IN ('shrinija','sakshi','janvhi');
+#inserting from abother table (subqueries)
+
+*******************
+
+UPDATE :
+
+UPDATE <Table name> SET col1=val1, col2=val2 WHERE condition;
+
+UPDATE movies SET rank=9 WHERE id=412321;
+
+#Update multiple rows also.
+#can be used along with sub-queries.
+
+************************
+
+DELETE :
+
+DELETE FROM movies WHERE id=412321;
+
+#Remove all rows : TRUNCATE TABLE <Table name>; (DDL)
+#Same as select without WHERE clause
+
+****************************************************************************************************************************
+
+DDL :
+
+CREATE TABLE student (id INT PRIMARY, name VARCHAR(50) NOT NULL);
+
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of NOT NULL and UNIQUE , uniquely identifies each row in a table
+FOREIGN KEY - uniquely identifies a row/record in another table
+CHECK - Ensures that all values in a column satifies a specific condition
+DEFAULT - Sets a default value for a column when no values is specified
+INDEX - Used to create and retrive data from the database very quickly
+
+****************************
+
+ALTER : ADD , MODIFY , DROP
+
+ALTER TABLE language ADD country VARCHAR(50);
+
+ALTER TABLE language MODIFY country VARCHAR(60);
+
+ALTER TABLE language DROP country;
+
+***************************
+
+# Remove both the table and all of the data permanently.
+
+DROP TABLE <Tablename>;
+
+DROP TABLE <Tablename> IF EXISTS;
+
+TRUNCATE TABLE <TableName>;
+# same as DELETE FROM <TableName>
+# TRUNCATE delete the content of the table not the table itself
+
+****************************************************************************************************************************
+
+
+DCL :
+
+Data contro language :
+
+***************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
