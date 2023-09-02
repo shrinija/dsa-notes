@@ -153,6 +153,7 @@ SELECT COUNT(year) FROM movies;
 
 SELECT COUNT(year) FROM movies WHERE year>2000;
 
+Q) how to count distinct year from movies table ?
 
 *************************************************************************************************************************
 
