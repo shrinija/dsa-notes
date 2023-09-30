@@ -258,7 +258,7 @@ template <typename T>
 class Node{
     public:
     T data;
-    Node<T> *next;
+    Node<T> *next;      // if you don't write <T> also you will not get error
 
     Node(T data)
     {
@@ -271,7 +271,7 @@ template <typename T>
 
 class queue_using_LL{
 
-Node<T> *head;
+Node<T> *head;      //but here you are suppose to
 Node<T> *tail;
 int size;
 
@@ -285,7 +285,7 @@ queue_using_LL()
 
 void enqueue(T data)
 {
-  Node<T>* newnode= new Node<T>(data);
+  Node<T>* newnode= new Node<T>(data);     // here also
   if(head==NULL)
   {
     head=newnode;
