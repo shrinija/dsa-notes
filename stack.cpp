@@ -281,11 +281,11 @@ using namespace std;
 template <typename T>
 
 class Node{
-public:
+public:                          // linked list me ham uske properties ko direct access karate , to vo public rakhana padata
 T data;
 Node* next;
 
-Node(T data)
+Node(T data)                  
 {
     this->data=data;
     next=NULL;
@@ -395,3 +395,72 @@ int main()
 
 }
 //............................................................
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+-> stack using array
+
+#include<iostream>
+using namespace std;
+
+template <typename T>
+
+class stack{
+  T*arr;
+  int nextindex;
+  int capacity;
+
+  public:
+  stack(){
+   nextindex=0;
+   capacity=4;
+   arr=new T[4];
+  }
+
+  void push(T val){
+    if(nextindex<capacity){
+     arr[nextindex++]=val;
+    }
+    else{
+      capacity=capacity*2;
+      arr=new T[capacity];
+      arr[nextindex++]=val;
+    }
+  }
+  void pop(){
+    if(nextindex!=0)
+    nextindex--;
+    else
+    cout<<"empty stack";
+  }
+  T top(){
+    if(nextindex!=0)
+    return arr[nextindex-1];
+    else 
+    return -1;
+  }
+  int size(){
+    return nextindex;
+  }
+};
+
+int main()
+{
+  stack<int>s;
+  cout<<s.top();
+  cout<<endl;
+  s.push(1);
+  s.push(2);
+  s.push(3);
+  s.push(4);
+  s.push(5);
+  s.push(6);
+  s.push(7);
+  s.push(5);
+  cout<<s.top();
+  cout<<endl;
+  cout<<s.size();
+  cout<<endl;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------
