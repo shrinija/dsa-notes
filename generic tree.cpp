@@ -3,6 +3,47 @@
 //........................................................................................................................
 //learn treenode class creation..
 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template <typename T>
+
+class Treenode
+{
+public:
+  T data;
+  vector<Treenode<T> *> children;
+
+  Treenode(T data)
+  {
+    this->data = data;
+  }
+};
+
+int main()
+{
+  Treenode<int>node1(1);
+
+  Treenode<int>node2(2);
+  Treenode<int>node3(3);
+  Treenode<int>node4(4);
+
+  node1.children.push_back(&node2);
+  node1.children.push_back(&node3);
+  node1.children.push_back(&node4);
+
+  Treenode<int>*ans=node1.children[0];
+
+  cout<<ans->data;
+  cout<<endl;
+  cout<<node1.children[0]->data;
+}
+
+
+//------------------------------------------------------------------
+
 #include <iostream>
 using namespace std;
 #include <vector>
